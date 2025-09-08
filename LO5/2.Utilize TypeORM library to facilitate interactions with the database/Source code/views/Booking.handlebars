@@ -1,0 +1,93 @@
+
+    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-xl p-8">
+     
+
+
+
+        <hr class="border-t border-gray-200 my-8">
+
+        <!-- Booking Form Section -->
+        <section class="mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Booking</h2>
+            <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200">
+                <form class="space-y-4" id="borrowForm">
+                    <div>
+                        <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">Member</label>
+                        <select name="member" id="studentName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          {{#each members}}
+                            <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="bookTitle" class="block text-sm font-medium text-gray-700 mb-1">Book Title</label>
+                        <select name="book" id="bookTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          {{#each books}}
+                            <option value="{{this.id}}">{{this.title}}</option>
+                          {{/each}}
+                        </select>
+                    </div>
+              
+                    <button type="submit" class="w-full bg-green-600 text-white py-2.5 px-6 rounded-lg shadow-md hover:bg-green-700 transition-colors duration-300 focus:outline-none focus:ring-4 focus:ring-green-200">
+                        Check
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <hr class="border-t border-gray-200 my-8">
+
+        <!-- Placeholder for Borrowed Books section -->
+        <section class="mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Status</h2>
+            <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200 text-center text-gray-500">
+                <p class="text-lg" id="status"></p>
+            </div>
+        </section>
+    </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const memberSelect = document.getElementById('studentName');
+    const bookSelect = document.getElementById('bookTitle');
+
+    new Choices(memberSelect, { searchEnabled: true, itemSelectText: '' });
+    new Choices(bookSelect, { searchEnabled: true, itemSelectText: '' });
+  });
+
+  document.getElementById("borrowForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // prevent page reload
+
+    const memberId = document.getElementById("studentName").value;
+    const bookId = document.getElementById("bookTitle").value;
+    const status = document.getElementById("status");
+
+    if (!memberId || !bookId) {
+        status.textContent = "Please select a member and a book.";
+        status.style.color = "red";
+        return;
+    }
+
+    try {
+        const res = await fetch("/borrow/check", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ memberId, bookId })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            status.textContent = data.message;
+            status.style.color = "green";
+        } else {
+            status.textContent = data.message;
+            status.style.color = "red";
+        }
+    } catch (err) {
+        console.error(err);
+        status.textContent = "Something went wrong!";
+        status.style.color = "red";
+    }
+});
+</script>

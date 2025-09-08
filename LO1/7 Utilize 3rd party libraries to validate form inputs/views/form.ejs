@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <h1>Registration Form</h1>
+
+  <% if (errors.length > 0) { %>
+    <ul style="color: red;">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <form action="/register" method="POST">
+    <label>Email:</label>
+    <input type="text" name="email" value="<%= oldInput.email || '' %>" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br><br>
+
+    <label>Age:</label>
+    <input type="number" name="age" value="<%= oldInput.age || '' %>" required><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  {{#if error}}<p style="color:red">{{error}}</p>{{/if}}
+
+  <form method="POST" action="/login">
+    <input type="text" name="username" placeholder="Enter username" required>
+    <button type="submit">Login</button>
+  </form>
+</body>
+</html>

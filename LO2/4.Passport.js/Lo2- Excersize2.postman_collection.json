@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "a5670f00-35d3-49fe-9f3c-aaf14a7d8d14",
+		"name": "Lo2- Excersize2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25267173",
+		"_collection_link": "https://webserviceswethink.postman.co/workspace/My-Workspace~d9742466-673f-4ee3-8304-f9c0fc11b2cd/collection/25267173-a5670f00-35d3-49fe-9f3c-aaf14a7d8d14?action=share&source=collection_link&creator=25267173"
+	},
+	"item": [
+		{
+			"name": "api/cabs",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/cabs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"cabs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"user@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/book-cab",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJAZ21haWwuY29tIiwiaWF0IjoxNzU2NDY3OTkxLCJleHAiOjE3NTY0NzE1OTF9.GaVrSvx4B51ARx2fWwYAaULOivpbGvIprIsu778ZyJo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\":\"thrissur\",\r\n    \"to\":\"kochi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/book-cab",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"book-cab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/my-rides",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJAZ21haWwuY29tIiwiaWF0IjoxNzU2NDY3OTkxLCJleHAiOjE3NTY0NzE1OTF9.GaVrSvx4B51ARx2fWwYAaULOivpbGvIprIsu778ZyJo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/my-rides",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"my-rides"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

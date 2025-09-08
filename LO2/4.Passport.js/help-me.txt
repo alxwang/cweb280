@@ -1,0 +1,7 @@
+cmd to install package
+=====================================
+npm install express
+npm install jsonwebtoken
+npm install passport
+npm install passport-jwt
+npm install mysql2

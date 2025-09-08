@@ -1,0 +1,57 @@
+<form id="loginForm">
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+
+<button onclick="getData()">Get Protected Data</button>
+<pre id="output"></pre>
+<button onclick="logout()">Log out</button>
+
+<script>
+  const form = document.getElementById('loginForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const res = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await res.json();
+
+    if (data.token) {
+      // Store JWT in sessionStorage instead of localStorage
+      sessionStorage.setItem('token', data.token);
+      alert('Login successful!');
+    } else {
+      alert(data.error || 'Login failed!');
+    }
+  });
+
+  async function getData() {
+    const token = sessionStorage.getItem('token');
+   
+
+    const res = await fetch('http://localhost:5000/api/data', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+ if (!token) {
+      document.getElementById('output').innerText = 'Missing token. Please login.';
+      return;
+    }
+    if(res.status === 401){
+      document.getElementById('output').innerText = 'Unauthorized. Please login.';
+    } else {
+      const data = await res.json();
+      document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+    }
+  }
+
+  function logout() {
+    sessionStorage.removeItem('token');  // remove JWT
+    alert('You are logged out!');
+  }
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJAX with Express + HBS</title>
+  <!-- jQuery (for AJAX) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>AJAX Example with Express</h2>
+
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button id="sendBtn">Send</button>
+
+  <p id="response"></p>
+
+  <script>
+    $(document).ready(function () {
+      $("#sendBtn").click(function () {
+        const name = $("#nameInput").val();
+
+        $.ajax({
+          url: "/save-data",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ name: name }),
+          success: function (res) {
+            $("#response").text(res.message);
+          },
+          error: function () {
+            $("#response").text("Error sending data!");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

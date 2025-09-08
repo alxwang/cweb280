@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX with Express Example</title>
+</head>
+<body>
+  <h1>Posts from Express API</h1>
+  <button id="loadBtn">Load Posts</button>
+  <ul id="postsList"></ul>
+
+  <script>
+    document.getElementById("loadBtn").addEventListener("click", () => {
+      // Fetch from our Express endpoint
+      fetch("/api/posts")
+        .then(response => response.json())
+        .then(data => {
+          const list = document.getElementById("postsList");
+          list.innerHTML = ""; // clear old results
+          data.forEach(post => {
+            const li = document.createElement("li");
+            li.textContent = `${post.id}. ${post.title}`;
+            list.appendChild(li);
+          });
+        })
+        .catch(err => console.error("Error fetching posts:", err));
+    });
+  </script>
+</body>
+</html>

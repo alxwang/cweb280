@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTMX with Express</title>
+  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+</head>
+<body>
+  <h2>HTMX Example</h2>
+
+  <button hx-get="/hello" hx-target="#result">Say Hello</button>
+
+  <form hx-post="/save-data" hx-target="#result" hx-swap="innerHTML">
+    <input type="text" name="name" placeholder="Enter your name" required />
+    <button type="submit">Send</button>
+  </form>
+
+  <div id="result"></div>
+</body>
+</html>

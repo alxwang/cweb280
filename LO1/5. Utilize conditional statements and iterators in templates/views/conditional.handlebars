@@ -1,0 +1,13 @@
+<h1>{{title}}</h1>
+
+{{#if isLoggedIn}}
+  <p>Welcome, {{username}}!</p>
+{{else}}
+  <p>Please log in</p>
+{{/if}}
+
+<ul>
+  {{#each students}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>

@@ -1,0 +1,9 @@
+<h2>{{title}}</h2>
+<ul>
+  {{#each items}}
+    <li>
+      {{name}} - {{quantity}} × {{formatPrice price}} = 
+      <strong>{{formatPrice (multiply price quantity)}}</strong>
+    </li>
+  {{/each}}
+</ul>

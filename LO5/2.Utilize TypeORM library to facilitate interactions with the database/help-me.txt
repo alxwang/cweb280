@@ -1,0 +1,7 @@
+cmd to install package
+=====================================
+npm install express
+npm install express-handlebars
+npm install mysql2
+npm install reflect-metadata
+npm install typeorm

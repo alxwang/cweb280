@@ -1,0 +1,16 @@
+Install express-session
+
+npm install express-session
+
+
+1.Run the application through terminal 
+
+node app.js
+
+2. Url to test
+
+http://localhost:5000/login
+
+http://localhost:5000/profile
+
+http://localhost:5000/logout

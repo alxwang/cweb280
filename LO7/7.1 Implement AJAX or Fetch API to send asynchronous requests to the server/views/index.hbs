@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJAX with Express + HBS</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>AJAX Example (GET + POST)</h2>
+
+  <!-- POST example -->
+  <h3>POST Request</h3>
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button id="sendBtn">Send (POST)</button>
+  <p id="postResponse"></p>
+
+  <!-- GET example -->
+  <h3>GET Request</h3>
+  <button id="getBtn">Fetch Message (GET)</button>
+  <p id="getResponse"></p>
+
+  <script>
+    $(document).ready(function () {
+      // --- POST request ---
+      $("#sendBtn").click(function () {
+        const name = $("#nameInput").val();
+
+        $.ajax({
+          url: "/save-data",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ name: name }),
+          success: function (res) {
+            $("#postResponse").text(res.message);
+          },
+          error: function () {
+            $("#postResponse").text("Error sending data!");
+          }
+        });
+      });
+
+      // --- GET request ---
+      $("#getBtn").click(function () {
+        $.ajax({
+          url: "/get-message",
+          method: "GET",
+          success: function (res) {
+            $("#getResponse").text(res.message);
+          },
+          error: function () {
+            $("#getResponse").text("Error fetching data!");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+1.Run the application through terminal 
+
+node app.js
+
+2. Url to test
+
+http://localhost:5000/set-cookie
+
+http://localhost:5000/get-cookie
+
+http://localhost:5000/clear-cookie

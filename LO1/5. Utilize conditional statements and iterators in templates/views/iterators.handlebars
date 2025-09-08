@@ -1,0 +1,14 @@
+<h2>{{title}}</h2>
+
+<ul>
+  {{#each todos}}
+    <li>
+      {{this.task}} - 
+      {{#if this.completed}}
+         Completed
+      {{else}}
+        Not Completed
+      {{/if}}
+    </li>
+  {{/each}}
+</ul>

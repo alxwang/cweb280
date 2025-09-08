@@ -1,0 +1,4 @@
+cmd to install package
+=====================================
+npm install express
+npm install jsonwebtoken

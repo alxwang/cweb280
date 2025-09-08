@@ -1,0 +1,7 @@
+<h2>{{title}}</h2>
+
+{{#isEqual userRole "admin"}}
+  <p>Welcome, Admin! You have full access.</p>
+{{else}}
+  <p>Welcome, User! You have limited access.</p>
+{{/isEqual}}
